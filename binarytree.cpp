@@ -1,4 +1,3 @@
-#include <iostream>
 #include <bits/stdc++.h>
 #include <algorithm>
 
@@ -23,6 +22,7 @@ node* createtree(int v){
     root -> right = NULL;
     return root;
 }
+
 void insertnode(int v,node* root){
     node* r = new node();
     r -> key = v;
@@ -48,6 +48,16 @@ void insertnode(int v,node* root){
     }
 }
 
+int height(node* root){
+    if(root==NULL){
+       return 0;
+    }
+    int l = height(root -> left);
+    int r = height(root -> right);
+    return max(l,r)+1;
+}
+
+
 void display(node* root){
 
 if(root!=NULL){
@@ -58,28 +68,35 @@ if(root!=NULL){
 
 }
 
+
 void displaymin(node* root){
-    while(root!=NULL){
+
+    while(root-> left!=NULL){
         root = root -> left;
     }
     cout<<"minimum data value present in tree"<<root ->key;
+
 }
 
 node* swapnode(node* root){
-    node* temp;
 
+    node* temp;
     if(root == NULL){
-        return;
+        cout<<" node "<<endl;
     }
+
     temp = root -> left;
     root -> left = root -> right;
     root -> right = temp;
 
     swapnode(root -> left);
     swapnode(root -> right);
+ return 0;
 }
 
+
 };
+
 
 int main()
 {
@@ -87,12 +104,15 @@ int main()
     int key;
     tree t1;
     node* root;
+
     do{
+        cout<<"\n\n    operations   "<<endl;  
         cout<<"1.enter the number"<<endl;
         cout<<"2.display tree"<<endl;
         cout<<"3. display min"<<endl;
         cout<<"4.swapnode"<<endl;
-        cout<<"5.exit"<<endl;
+        cout<<"5. height "<<endl;
+        cout<<"6.exit"<<endl;
 
         cin>>choice;
         switch (choice)
@@ -118,14 +138,20 @@ int main()
             t1.displaymin(root);
             break;
 
-            csae 4:
+            case 4:
             t1.swapnode(root);
             cout<<"after traversal"<<endl;
             t1.display(root);
             break;
+          
+            case 5:
+          //  root = new node();
+            cout<<"height is: "<<t1.height(root)<<endl;
+            break;
 
             default:
               break;
+              
         }
-    }while(choice!=5);
+    }while(choice!=6);
 }

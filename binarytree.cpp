@@ -74,7 +74,7 @@ void displaymin(node* root){
     while(root-> left!=NULL){
         root = root -> left;
     }
-    cout<<"minimum data value present in tree"<<root ->key<<endl;
+    cout<<"maximum data value present in tree"<<root ->key<<endl;
 
 }
     

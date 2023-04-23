@@ -55,7 +55,7 @@ class Book{
             cout<< root -> child[i]-> name<<endl;
             for(int j=1;j<= root ->child[i] -> c;j++){
             cout<< root -> child[i]-> child[j] -> name<<endl;
-            for(int k=1;k<= root -> c;k++){
+            for(int k=1;k<= root ->child[i] -> child[j] -> c;k++){
             cout<< root -> child[j]->child[j] -> child[k]-> name<<endl;
                  }
                }

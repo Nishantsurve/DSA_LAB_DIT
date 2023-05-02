@@ -1,70 +1,95 @@
-#include<iostream>
-#include<bits/stdc++.h>
+#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
-struct node{
-    int c;
-    char name[10];
-    struct node* child[20];
-}*root;
+struct node
+{
+    int count;
+    char name[20];
+    struct node *child[20];
+} *root;
 
-class Book{
-    public:
-    struct node * root;
+class Book
+{
 
-    Book(){
-        root  = NULL;
+public:
+    struct node *root;
+
+    Book()
+    {
+        root = NULL;
     }
 
-    void create(){
-        root = new node();
-        cout<<"Enter the name of book"<<endl;
-        cin>>root -> name;
-        cout<<"Enter the name of chapters"<<endl;
-        cin>>root -> c;
+    void create()
+    {
+        root = new node;
+        cout << endl
+             << "Enter the name of Book :  ";
+        cin >> root->name;
 
-        for(int i=0;i<=root -> c;i++){
-            root-> child[i] = new node();
-            cout<<"Enter the name of chapter"<<endl;
-            cin>>root ->child[i]-> name;
-            cout<<"Enter the count of sections"<<endl;
-            cin>>root->child[i] -> c;
+        cout << endl
+             << "Enter count of Chapters : ";
+        cin >> root->count;
 
-            for(int j =1;j<=root-> child[i]->c;i++){
-                root -> child[i] -> child[j] = new node();
-                cout<<"Enter the name of section"<<endl;
-                cin>>root -> child[i] -> child[j] -> name;
-                 cout<<"Enter the count of sub sections"<<endl;
-                 cin>>root ->child[i] -> child[j]-> c;
+        for (int p = 1; p <= root->count; p++)
+        {
+            root->child[p] = new node;
 
-                 for(int k =1;k<=root -> child[i] -> child[j] -> c;i++){
-                    root ->child[i] -> child[j] -> child[k] = new node();
+            cout << endl
+                 << "Enter the name of chapter : ";
+            cin >> root->child[p]->name;
 
-                    cout<<"enter the name of subsection"<<endl;
-                    cin>> root -> child[i] -> child[j] -> child[k]-> name;
-                 }
+            cout << endl
+                 << "Enter count of Sections : ";
+            cin >> root->child[p]->count;
 
+            for (int q = 1; q <= root->child[p]->count; q++)
+            {
+                root->child[p]->child[q] = new node;
+
+                cout << endl
+                     << "Enter the name of Section : ";
+                cin >> root->child[p]->child[q]->name;
+
+                cout << endl
+                     << "Enter count of Subsections : ";
+                cin >> root->child[p]->child[q]->count;
+
+                for (int r = 1; r <= root->child[p]->child[q]->count; r++)
+                {
+                    root->child[p]->child[q]->child[r] = new node;
+                    cout << endl
+                         << "Enter the name of Subsection : ";
+                    cin >> root->child[p]->child[q]->child[r]->name;
+                }
             }
         }
     }
 
-    void display(){
-        cout<<root-> name<<endl;
+    void display()
+    {
+        cout << root->name << endl;
 
-        for(int i=1;i<= root -> c;i++){
-            cout<< root -> child[i]-> name<<endl;
-            for(int j=1;j<= root ->child[i] -> c;j++){
-            cout<< root -> child[i]-> child[j] -> name<<endl;
-            for(int k=1;k<= root ->child[i] -> child[j] -> c;k++){
-            cout<< root -> child[j]->child[j] -> child[k]-> name<<endl;
-                 }
-               }
+        for (int p = 1; p <= root->count; p++)
+        {
+            cout << "\n       --" << root->child[p]->name;
+
+            for (int q = 1; q <= root->child[p]->count; q++)
+            {
+                cout << "\n         --" << root->child[p]->child[q]->name;
+
+                for (int r = 1; r <= root->child[p]->child[q]->count; r++)
+                {
+                    cout << "\n           --" << root->child[p]->child[q]->child[r]->name;
+                }
             }
-         }
+        }
+    }
 };
 
-int main(){
-    Book b;
-    b.create();
-    b.display();
+int main()
+{
+    Book b1;
+    b1.create();
+    b1.display();
 }

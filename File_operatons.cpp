@@ -79,11 +79,17 @@ void deletedata(int key){
     while(fin.read((char*) &s, sizeof(s))){
         if(s.getRollNo() != key){
             fout.write((char*)&s, sizeof(s));
-            flag = 1;
+           
         }
+         flag = 1;
     }
-    if(flag==0)
-        cout<<"\nData not found:";
+    if(flag==1){
+        cout<<"\nData Deleted "<<endl;
+        }
+        else{
+            cout<<"Data not found"<<endl;
+        }
+        
     fin.close();
     fout.close();
     remove("Student.dat");
@@ -93,7 +99,7 @@ void deletedata(int key){
 int main(){
     int ch;
     do{
-        cout<<"\n1.Write\n2.Display\n3.Search\n4.Delete\n5.Exit\n";
+        cout<<"\n1.Write into file \n2.Display\n3.Search\n4.Delete\n5.Exit\n";
         cout<<"\nEnter your choice= ";
         cin>>ch;
         switch(ch){
@@ -105,13 +111,13 @@ int main(){
                 break;
             case 3:
                 int key;
-                cout<<"\n\nEnter the Roll No. to be searched = ";
+                cout<<"\n\nEnter the Roll No to be searched = ";
                 cin>>key;
                 searchdata(key);
                 break;
             case 4:
                 int val;
-                cout<<"\n\nEnter the Roll No. to be deleted = ";
+                cout<<"\n\nEnter the Roll No to be deleted = ";
                 cin>>val;
                 deletedata(val);
                 break;
